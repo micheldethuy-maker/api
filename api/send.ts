@@ -15,6 +15,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const { name, email, company, message } = req.body;
+  
+  console.log("EMAIL_USER =", process.env.EMAIL_USER);
+  console.log("EMAIL_PASS length =", process.env.EMAIL_PASS?.length);
 
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
