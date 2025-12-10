@@ -41,13 +41,13 @@ Email : ${email}
 Société : ${company}
 Message :
 ${message}
-      `
+
+       console.log('EMAIL INFO', info);
+
     });
-     console.log('EMAIL INFO', info);
-  
     return res.status(200).json({ success: true });
   } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: "Email not sent" });
+  console.error(err);
+  return res.status(500).json({ error: "Email not sent" });
   }
 }
