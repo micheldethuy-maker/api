@@ -21,8 +21,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     port: 587,
     secure: false,
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
+  user: process.env.EMAIL_USER,
+  pass: process.env.EMAIL_PASS
     }
   });
 
