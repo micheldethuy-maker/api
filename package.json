@@ -1,0 +1,11 @@
+{
+  "name": "sensum-email-api",
+  "version": "1.0.0",
+  "main": "send.ts",
+  "scripts": {
+    "start": "node send.ts"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.10"
+  }
+}
