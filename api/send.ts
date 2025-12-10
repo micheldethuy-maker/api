@@ -32,7 +32,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     await transporter.sendMail({
-      from: "contact@sensum-consulting.com",   {/* process.env.EMAIL_USER, */}
+      from: "contact@sensum-consulting.com",   /* process.env.EMAIL_USER, */
       to: "contact@sensum-consulting.com",
       subject: `Nouveau message de ${name}`,
       text: `
