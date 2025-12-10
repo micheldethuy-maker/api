@@ -2,6 +2,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import nodemailer from 'nodemailer';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -15,7 +16,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const { name, email, company, message } = req.body;
-  
+
   console.log("EMAIL_USER =", process.env.EMAIL_USER);
   console.log("EMAIL_PASS length =", process.env.EMAIL_PASS?.length);
 
@@ -27,12 +28,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS
     }
-
   });
 
   try {
-    await transporter.sendMail({
-      from: process.env.EMAIL_FROM /* "michel@sensum-consulting.com", process.env.EMAIL_USER, */
+    const info = await transporter.sendMail({
+      from: process.env.EMAIL_FROM || process.env.EMAIL_USER, 
       to: "contact@sensum-consulting.com",
       subject: `Nouveau message de ${name}`,
       text: `
@@ -41,13 +41,14 @@ Email : ${email}
 Société : ${company}
 Message :
 ${message}
-
-       console.log('EMAIL INFO', info);
-
+      `
     });
+
+    console.log("EMAIL INFO:", info);
+
     return res.status(200).json({ success: true });
   } catch (err) {
-  console.error(err);
-  return res.status(500).json({ error: "Email not sent" });
+    console.error("SENDMAIL ERROR:", err);
+    return res.status(500).json({ error: "Email not sent" });
   }
 }
