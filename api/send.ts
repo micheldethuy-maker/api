@@ -6,8 +6,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  console.log(process.env.WHOAMI)
-  
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
@@ -21,8 +19,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   console.log("EMAIL_USER =", process.env.EMAIL_USER);
   console.log("EMAIL_PASS length =", process.env.EMAIL_PASS?.length);
 
-  console.log(process.env.WHOAMI)
-  
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -33,7 +29,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
   });
-  console.log(process.env.WHOAMI)
 
   try {
     await transporter.sendMail({
@@ -48,7 +43,6 @@ Message :
 ${message}
       `
     });
-  console.log(process.env.WHOAMI)
 
     return res.status(200).json({ success: true });
   } catch (err) {
