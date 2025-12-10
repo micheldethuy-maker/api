@@ -1,11 +1,14 @@
 {
   "name": "sensum-email-api",
   "version": "1.0.0",
-  "main": "send.ts",
-  "scripts": {
-    "start": "node send.ts"
-  },
+  "main": "send.js",
+  "license": "MIT",
+  "type": "module",
   "dependencies": {
-    "nodemailer": "^6.9.10"
+    "nodemailer": "latest"
+  },
+  "devDependencies": {
+    "@vercel/node": "latest",
+    "@types/node": "latest"
   }
 }
