@@ -43,7 +43,8 @@ Message :
 ${message}
       `
     });
-
+     console.log('EMAIL INFO', info);
+  
     return res.status(200).json({ success: true });
   } catch (err) {
     console.error(err);
